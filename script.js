@@ -52,26 +52,23 @@ typeEffect();
 const reveals = document.querySelectorAll(".reveal");
 
 function revealSections() {
-
     reveals.forEach(section => {
-
         const top = section.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
 
-        if (top < windowHeight - 100) {
+        if (top < window.innerHeight - 100) {
             section.classList.add("active");
         }
-
     });
-
 }
 
-// Run once when page loads
+// Run immediately
+revealSections();
+
+// Run again after everything loads
 window.addEventListener("load", revealSections);
 
 // Run while scrolling
 window.addEventListener("scroll", revealSections);
-
 
 
 // ================================
