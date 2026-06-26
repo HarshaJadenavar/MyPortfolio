@@ -1,109 +1,147 @@
+// ================================
+// Typing Animation
+// ================================
 
-// typing animation
-
-const words=[
-"Python Developer",
-"Full Stack Developer",
-"Data Science Enthusiast",
-"AI Explorer"
+const words = [
+    "Python Full Stack Developer",
+    "Data Science Enthusiast",
+    "AI Explorer",
+    "Machine Learning Learner"
 ];
 
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
 
-let i=0;
-let j=0;
+const typingElement = document.getElementById("typing");
+
+function typeEffect() {
+
+    const currentWord = words[wordIndex];
+
+    if (!isDeleting) {
+        typingElement.textContent = currentWord.substring(0, charIndex++);
+    } else {
+        typingElement.textContent = currentWord.substring(0, charIndex--);
+    }
+
+    let speed = 120;
+
+    if (!isDeleting && charIndex === currentWord.length + 1) {
+        isDeleting = true;
+        speed = 1500;
+    }
+
+    if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        speed = 300;
+    }
+
+    setTimeout(typeEffect, speed);
+}
+
+typeEffect();
 
 
-function typing(){
 
-document.getElementById("typing").innerHTML
-=
-words[i].substring(0,j++);
+// ================================
+// Scroll Reveal Animation
+// ================================
 
+const reveals = document.querySelectorAll(".reveal");
 
-if(j>words[i].length){
+function revealSections() {
 
-j=0;
+    reveals.forEach(section => {
 
-i=(i+1)%words.length;
+        const top = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (top < windowHeight - 100) {
+            section.classList.add("active");
+        }
+
+    });
 
 }
 
+// Run once when page loads
+window.addEventListener("load", revealSections);
 
-setTimeout(typing,180);
-
-}
-
-
-typing();
+// Run while scrolling
+window.addEventListener("scroll", revealSections);
 
 
 
-// scroll animation
+// ================================
+// Theme Toggle
+// ================================
 
+const themeBtn = document.getElementById("theme");
 
-window.addEventListener(
-"scroll",
-()=>{
+themeBtn.addEventListener("click", () => {
 
+    document.body.classList.toggle("light");
 
-document
-.querySelectorAll(".reveal")
-.forEach(item=>{
-
-
-if(
-item.getBoundingClientRect().top
-<
-window.innerHeight-100
-){
-
-item.classList.add("active");
-
-}
-
+    if (document.body.classList.contains("light")) {
+        themeBtn.textContent = "🌙";
+    } else {
+        themeBtn.textContent = "☀";
+    }
 
 });
 
 
+
+// ================================
+// Mobile Menu
+// ================================
+
+const menuBtn = document.getElementById("menu");
+const nav = document.getElementById("nav");
+
+menuBtn.addEventListener("click", () => {
+
+    if (nav.style.display === "block") {
+        nav.style.display = "none";
+    } else {
+        nav.style.display = "block";
+    }
+
 });
 
 
 
-// Dark Light mode
+// ================================
+// Active Navigation Link
+// ================================
 
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
 
-document
-.getElementById("theme")
-.onclick=()=>{
+window.addEventListener("scroll", () => {
 
+    let current = "";
 
-document.body.classList.toggle(
-"light"
-);
+    sections.forEach(section => {
 
+        const sectionTop = section.offsetTop - 120;
 
-};
+        if (pageYOffset >= sectionTop) {
+            current = section.getAttribute("id");
+        }
 
+    });
 
+    navLinks.forEach(link => {
 
-// Mobile menu
+        link.classList.remove("active-link");
 
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active-link");
+        }
 
-document
-.getElementById("menu")
-.onclick=()=>{
+    });
 
-
-let nav=
-document.getElementById("nav");
-
-
-nav.style.display =
-nav.style.display==="block"
-?
-"none"
-:
-"block";
-
-
-};
+});
