@@ -1,0 +1,440 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',Arial,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#050816;
+color:white;
+transition:.4s;
+}
+
+
+/* NAVBAR */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+height:70px;
+padding:0 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(5,8,22,.8);
+backdrop-filter:blur(15px);
+z-index:1000;
+}
+
+
+.logo,
+span{
+color:#00eaff;
+}
+
+
+nav a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-weight:500;
+}
+
+
+nav a:hover{
+color:#00eaff;
+}
+
+
+
+/* FIXED SECTION SPACING */
+
+section{
+
+padding:90px 10% 60px;
+
+/* removed min-height:100vh */
+
+}
+
+
+section h1{
+text-align:center;
+margin-bottom:40px;
+font-size:38px;
+}
+
+
+
+
+/* HERO */
+
+
+.hero{
+
+min-height:90vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:40px;
+
+}
+
+
+.hero h1{
+font-size:50px;
+}
+
+
+#typing{
+
+color:#00eaff;
+
+margin:15px 0;
+
+}
+
+
+.profile{
+
+width:320px;
+
+height:320px;
+
+object-fit:cover;
+
+border-radius:50%;
+
+box-shadow:0 0 35px #00eaff;
+
+animation:float 3s infinite;
+
+}
+
+
+@keyframes float{
+
+50%{
+transform:translateY(-20px);
+}
+
+}
+
+
+
+
+/* BUTTONS */
+
+
+.btn,
+button{
+
+padding:12px 25px;
+
+border-radius:30px;
+
+border:none;
+
+background:#00eaff;
+
+color:#000;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+margin:10px 5px;
+
+}
+
+
+button:hover,
+.btn:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 0 20px #00eaff;
+
+}
+
+
+
+.secondary{
+
+background:white;
+
+}
+
+
+
+
+/* CARDS */
+
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+}
+
+
+.card,
+.project{
+
+background:rgba(255,255,255,.12);
+
+border:
+
+1px solid rgba(255,255,255,.2);
+
+padding:25px;
+
+border-radius:20px;
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,.3);
+
+transition:.4s;
+
+}
+
+
+.card:hover,
+.project:hover{
+
+transform:translateY(-10px);
+
+}
+
+
+.project img{
+
+width:100%;
+
+height:180px;
+
+object-fit:cover;
+
+border-radius:15px;
+
+margin-bottom:15px;
+
+}
+
+
+
+
+/* CONTACT */
+
+
+input,
+textarea{
+
+width:100%;
+
+padding:15px;
+
+margin:10px 0;
+
+border-radius:10px;
+
+border:1px solid #00eaff;
+
+background:#111827;
+
+color:white;
+
+}
+
+
+
+
+/* ANIMATION */
+
+
+.reveal{
+
+opacity:0;
+
+transform:translateY(50px);
+
+transition:1s;
+
+}
+
+
+.active{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+
+
+
+/* =====================
+
+ LIGHT MODE FIX
+
+===================== */
+
+
+body.light{
+
+background:#f5f7ff;
+
+color:#111;
+
+}
+
+
+
+body.light header{
+
+background:
+
+rgba(255,255,255,.8);
+
+box-shadow:
+
+0 5px 20px #ddd;
+
+}
+
+
+body.light nav a{
+
+color:#111;
+
+}
+
+
+body.light .card,
+body.light .project{
+
+background:white;
+
+color:#111;
+
+border:1px solid #ddd;
+
+box-shadow:
+
+0 10px 25px rgba(0,0,0,.15);
+
+}
+
+
+
+body.light input,
+body.light textarea{
+
+background:white;
+
+color:black;
+
+border:1px solid #00aaff;
+
+}
+
+
+body.light .secondary{
+
+background:#111;
+
+color:white;
+
+}
+
+
+
+
+
+/* MOBILE */
+
+
+#menu{
+
+display:none;
+
+}
+
+
+
+@media(max-width:768px){
+
+
+.hero{
+
+flex-direction:column;
+
+text-align:center;
+
+padding-top:120px;
+
+}
+
+
+.profile{
+
+width:220px;
+
+height:220px;
+
+}
+
+
+nav{
+
+display:none;
+
+position:absolute;
+
+top:70px;
+
+left:0;
+
+width:100%;
+
+background:#050816;
+
+padding:20px;
+
+}
+
+
+nav a{
+
+display:block;
+
+margin:20px;
+
+}
+
+
+#menu{
+
+display:block;
+
+}
+
+
+}
